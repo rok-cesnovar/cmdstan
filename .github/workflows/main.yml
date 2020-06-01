@@ -16,8 +16,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - name: Install latexmk
-      run: sudo apt-get install latexmk
+      run: |
+      sudo apt-get install latexmk
+      sudo apt-get install texlive-fonts-recommended
+
     # Runs a single command using the runners shell
     - name: Build manual
       run: make manual
