@@ -7,19 +7,20 @@ on:
     branches: [ master, develop ]
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Install tex environment
       run: sudo apt-get install latexmk texlive-fonts-recommended texlive-latex-recommended texlive-latex-extra
 
-    # Runs a single command using the runners shell
     - name: Build manual
       run: make manual
-
+    
+    - name: Upload build result
+      uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: manual_PDF
+        path: 'doc/cmdstan-guide-2.23.pdf'
