@@ -1,4 +1,4 @@
-name: Cmdstan manual
+name: cmdstan manual
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Install tex environment
-      run: sudo apt-get install latexmk texlive-fonts-recommended texlive-latex-recommended
+      run: sudo apt-get install latexmk texlive-fonts-recommended texlive-latex-recommended texlive-latex-extra
 
     # Runs a single command using the runners shell
     - name: Build manual
