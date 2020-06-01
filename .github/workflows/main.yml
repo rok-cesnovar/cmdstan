@@ -27,5 +27,19 @@ jobs:
       uses: actions/upload-artifact@v2
       if: success()
       with:
-        name: Upload manual PDF
+        name: cmdstan manual
+        path: 'doc/cmdstan-guide-2.23.pdf'
+    
+    - name: Upload build result
+      uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: cmdstan manual
+        path: 'doc/cmdstan-guide-2.23.pdf'
+    
+    - name: Upload build result
+      uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: cmdstan manual pdf
         path: 'doc/cmdstan-guide-2.23.pdf'
