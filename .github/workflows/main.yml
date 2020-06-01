@@ -16,9 +16,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    - run: |
-      sudo apt-get install latexmk
-      sudo apt-get install texlive-fonts-recommended
+    - name: Install tex environment
+      run: sudo apt-get install latexmk texlive-fonts-recommended
 
     # Runs a single command using the runners shell
     - name: Build manual
