@@ -50,7 +50,7 @@ jobs:
       run: echo "::add-path::D:/a/cmdstan/cmdstan/stan/lib/stan_math/lib/tbb"
     - name: Run full unit tests
       shell: powershell
-      run: python.exe runCmdStanTests.py -j2 ./src/test
+      run: python.exe runCmdStanTests.py -j2 .\src\test\interface
     - name: Upload gtest_output xml
       uses: actions/upload-artifact@v2
       if: failure()
