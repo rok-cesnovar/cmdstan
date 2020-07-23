@@ -42,6 +42,9 @@ jobs:
       run: Get-Command mingw32-make | Select-Object -ExpandProperty Definition
     - name: Build Math libs
       shell: powershell
+      run: dir .
+    - name: Build Math libs
+      shell: powershell
       run: mingw32-make -f stan/lib/stan_math/make/standalone math-libs
     - name: Add TBB to PATH
       shell: powershell
