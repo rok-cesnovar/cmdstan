@@ -1,26 +1,57 @@
-name: Manual build test
+name: Windows RTools 3.5
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    branches: [ master, develop, test ]
+    branches: 
+      - develop
   pull_request:
-    branches: [ master, develop ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+      - develop
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  full:
+    name: Full unit tests
+    runs-on: windows-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
-
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '2.x'
+    - name: Download RTools
+      run: Invoke-WebRequest -Uri https://cran.rstudio.com/bin/windows/Rtools/Rtools35.exe -OutFile ./R35.exe
+    - name: Install RTools
+      shell: powershell
+      run: Start-Process -FilePath ./R35.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
+    - name: PATH Setup
+      shell: powershell
+      run: echo "::add-path::C:/Rtools/bin"
+    - name: PATH Setup
+      shell: powershell
+      run: echo "::add-path::C:/Rtools/mingw_64/bin"
+    - name: Print g++ version
+      shell: powershell
+      run: g++ --version
+    - name: Print g++ path
+      shell: powershell
+      run: Get-Command g++ | Select-Object -ExpandProperty Definition
+    - name: Print mingw32-make version
+      shell: powershell
+      run: mingw32-make --version
+    - name: Print mingw32-make path
+      shell: powershell
+      run: Get-Command mingw32-make | Select-Object -ExpandProperty Definition
+    - name: Build Math libs
+      shell: powershell
+      run: mingw32-make -f stan/lib/stan_math/make/standalone math-libs
+    - name: Add TBB to PATH
+      shell: powershell
+      run: echo "::add-path::D:/a/cmdstan/cmdstan/stan/lib/stan_math/lib/tbb"
+    - name: Run full unit tests
+      shell: powershell
+      run: python.exe runCmdStanTests.py -j2 ./src/test
+    - name: Upload gtest_output xml
+      uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: gtest_outputs_xml
+        path: '**/*_test.xml'
