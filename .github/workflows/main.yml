@@ -19,11 +19,11 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: '2.x'
-    - name: Download RTools
-      run: Invoke-WebRequest -Uri https://cran.rstudio.com/bin/windows/Rtools/Rtools35.exe -OutFile ./R35.exe
-    - name: Install RTools
+    - name: Download & install RTools
+      run: |
+        Invoke-WebRequest -Uri https://cran.rstudio.com/bin/windows/Rtools/Rtools35.exe -OutFile ./R35.exe
+        Start-Process -FilePath ./R35.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
       shell: powershell
-      run: Start-Process -FilePath ./R35.exe -ArgumentList /VERYSILENT -NoNewWindow -Wait
     - name: PATH Setup
       shell: powershell
       run: echo "::add-path::C:/Rtools/bin"
@@ -49,8 +49,10 @@ jobs:
       shell: powershell
       run: echo "::add-path::D:/a/cmdstan/cmdstan/stan/lib/stan_math/lib/tbb"
     - name: Run full unit tests
+      run: |
+        mingw32-make examples/bernoulli/bernoulli.exe
+        ./examples/bernoulli/bernoulli.exe sample data file=examples/bernoulli/bernoulli.data.json
       shell: powershell
-      run: python.exe runCmdStanTests.py -j2 .\src\test\interface
     - name: Upload gtest_output xml
       uses: actions/upload-artifact@v2
       if: failure()
