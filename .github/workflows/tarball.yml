@@ -69,10 +69,13 @@ jobs:
     #     make build
     #     make clean-all
     
+    - name: install git-archive-all
+      run: |
+        pip install git-archive-all
+
     - name: package tarball
       run: |
         cd cmdstan
-        pip install git-archive-all
         git-archive-all cmdstan-tarball.tar.gz
         tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
 
