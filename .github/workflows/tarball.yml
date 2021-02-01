@@ -76,7 +76,7 @@ jobs:
 
     - name: package tarball
       run: |
-        cd ${{ env.GITHUB_WORKSPACE }}/cmdstan
+        ls -l
         git-archive-all cmdstan-tarball.tar.gz
         tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
 
