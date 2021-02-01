@@ -3,6 +3,10 @@ name: CmdStan tarball builder
 'on':
   workflow_dispatch:
     inputs:
+      tarball_name: 
+        description: 'CmdStan build name'
+        required: true
+        default: ''
       cmdstan_repo:
         description: 'CmdStan repo'
         required: true
@@ -40,6 +44,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
     - uses: actions/checkout@v2
       with:
         repository: ${{ github.event.inputs.cmdstan_repo }}
@@ -58,8 +63,22 @@ jobs:
         ref: ${{ github.event.inputs.math_branch }}
         path: cmdstan/stan/lib/stan_math
     
-    - name: Building
+    # - name: Building
+    #   run: |
+    #     cd cmdstan
+    #     make build
+    #     make clean-all
+    
+    - name: package tarball
       run: |
         cd cmdstan
-        make build
+        pip install git-archive-all
+        git-archive-all cmdstan-tarball.tar.gz
+        tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
+
+    - name: Upload tarball
+      uses: actions/upload-artifact@v2
+      with:
+        path: 'cmdstan/cmdstan-tarball'
+
     
