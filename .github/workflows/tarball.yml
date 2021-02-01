@@ -1,0 +1,65 @@
+name: CmdStan tarball builder
+
+'on':
+  workflow_dispatch:
+    inputs:
+      cmdstan_repo:
+        description: 'CmdStan repo'
+        required: true
+        default: 'https://github.com/stan-dev/cmdstan'
+      cmdstan_branch:
+          description: 'CmdStan branch'
+          required: true
+          default: 'develop'
+      stan_repo:
+        description: 'Stan repo'
+        required: true
+        default: 'https://github.com/stan-dev/stan'
+      stan_branch:
+          description: 'Stan branch'
+          required: true
+          default: 'develop'
+      math_repo:
+        description: 'Math repo'
+        required: true
+        default: 'https://github.com/stan-dev/math'
+      math_branch:
+          description: 'Math branch'
+          required: true
+          default: 'develop'
+      stanc3_repo:
+        description: 'Stanc3 repo'
+        required: true
+        default: 'https://github.com/stan-dev/stanc3'
+      stanc3_branch:
+          description: 'Stanc3 branch'
+          required: true
+          default: 'master'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ github.event.inputs.cmdstan_repo }}
+        ref: ${{ github.event.inputs.cmdstan_branch }}
+        path: cmdstan
+
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ github.event.inputs.stan_repo }}
+        ref: ${{ github.event.inputs.stan_branch }}
+        path: cmdstan/stan
+
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ github.event.inputs.math_repo }}
+        ref: ${{ github.event.inputs.math_branch }}
+        path: cmdstan/stan/lib/stan_math
+    
+    - name: Building
+      run: |
+        cd cmdstan
+        make build
+    
