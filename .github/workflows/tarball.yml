@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
+    - uses: actions/setup-python@v1
     - uses: actions/checkout@v2
       with:
         repository: ${{ github.event.inputs.cmdstan_repo }}
@@ -69,7 +69,7 @@ jobs:
     #     make build
     #     make clean-all
 
-    - uses: actions/setup-python@v1
+    
     - name: install git-archive-all
       run: |
         pip install git-archive-all
