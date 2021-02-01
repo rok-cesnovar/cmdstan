@@ -69,6 +69,7 @@ jobs:
     #     make build
     #     make clean-all
     
+    - uses: actions/setup-python@v1
     - name: install git-archive-all
       run: |
         pip install git-archive-all
