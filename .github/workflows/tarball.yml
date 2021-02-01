@@ -68,7 +68,7 @@ jobs:
     #     cd cmdstan
     #     make build
     #     make clean-all
-    
+
     - uses: actions/setup-python@v1
     - name: install git-archive-all
       run: |
@@ -76,7 +76,7 @@ jobs:
 
     - name: package tarball
       run: |
-        cd cmdstan
+        cd ${{ env.GITHUB_WORKSPACE }}/cmdstan
         git-archive-all cmdstan-tarball.tar.gz
         tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
 
