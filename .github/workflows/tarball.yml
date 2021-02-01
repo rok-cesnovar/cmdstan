@@ -77,13 +77,14 @@ jobs:
     - name: package tarball
       run: |
         cd cmdstan
-        git-archive-all cmdstan-tarball.tar.gz
+        git-archive-all ../cmdstan-tarball.tar.gz
+        cd ../
         mkdir cmdstan-tarball
         tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
 
     - name: Upload tarball
       uses: actions/upload-artifact@v2
       with:
-        path: 'cmdstan/'
+        path: 'cmdstan-tarball/'
 
     
