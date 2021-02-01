@@ -81,6 +81,7 @@ jobs:
         cd ../
         mkdir cmdstan-tarball
         tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
+        ls -l
 
     - name: Upload tarball
       uses: actions/upload-artifact@v2
