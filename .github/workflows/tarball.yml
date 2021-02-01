@@ -6,7 +6,7 @@ name: CmdStan tarball builder
       cmdstan_repo:
         description: 'CmdStan repo'
         required: true
-        default: 'https://github.com/stan-dev/cmdstan'
+        default: 'stan-dev/cmdstan'
       cmdstan_branch:
           description: 'CmdStan branch'
           required: true
@@ -14,7 +14,7 @@ name: CmdStan tarball builder
       stan_repo:
         description: 'Stan repo'
         required: true
-        default: 'https://github.com/stan-dev/stan'
+        default: 'stan-dev/stan'
       stan_branch:
           description: 'Stan branch'
           required: true
@@ -22,7 +22,7 @@ name: CmdStan tarball builder
       math_repo:
         description: 'Math repo'
         required: true
-        default: 'https://github.com/stan-dev/math'
+        default: 'stan-dev/math'
       math_branch:
           description: 'Math branch'
           required: true
@@ -30,7 +30,7 @@ name: CmdStan tarball builder
       stanc3_repo:
         description: 'Stanc3 repo'
         required: true
-        default: 'https://github.com/stan-dev/stanc3'
+        default: 'stan-dev/stanc3'
       stanc3_branch:
           description: 'Stanc3 branch'
           required: true
