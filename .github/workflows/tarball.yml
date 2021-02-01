@@ -81,7 +81,7 @@ jobs:
         ls -l
         cd ../
         mkdir cmdstan-tarball
-        tar -czvf cmdstan/cmdstan-tarball.tar.gz cmdstan-tarball
+        tar -xvzf cmdstan/cmdstan-tarball.tar.gz cmdstan-tarball
         ls -l
 
     - name: Upload tarball
