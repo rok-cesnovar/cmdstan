@@ -77,10 +77,11 @@ jobs:
     - name: package tarball
       run: |
         cd cmdstan
-        git-archive-all ../cmdstan-tarball.tar.gz
+        git-archive-all cmdstan-tarball.tar.gz
+        ls -l
         cd ../
         mkdir cmdstan-tarball
-        tar -czvf cmdstan-tarball.tar.gz cmdstan-tarball
+        tar -czvf cmdstan/cmdstan-tarball.tar.gz cmdstan-tarball
         ls -l
 
     - name: Upload tarball
