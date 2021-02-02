@@ -79,7 +79,7 @@ jobs:
         cd cmdstan
         git-archive-all cmdstan-temp.tar.gz
         ls -l
-        mkdir cmdstan-tarball
+        mkdir cmdstan-${{ github.event.inputs.tarball_name }}
         tar -xvzf cmdstan-temp.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
         tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}
 
