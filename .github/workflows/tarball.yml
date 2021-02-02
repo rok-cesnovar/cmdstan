@@ -79,14 +79,14 @@ jobs:
         cd cmdstan
         git-archive-all cmdstan-tarball.tar.gz
         ls -l
-        cd ../
-        mkdir cmdstan-tarball
-        tar -xvzf cmdstan/cmdstan-tarball.tar.gz cmdstan-tarball
-        ls -l
+     #   cd ../
+     #   mkdir cmdstan-tarball
+     #   tar -xvzf cmdstan/cmdstan-tarball.tar.gz cmdstan-tarball
+     # ls -l
 
     - name: Upload tarball
       uses: actions/upload-artifact@v2
       with:
-        path: 'cmdstan-tarball/'
+        path: 'cmdstan/cmdstan-tarball.tar.gz'
 
     
