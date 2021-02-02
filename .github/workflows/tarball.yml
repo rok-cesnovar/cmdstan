@@ -80,12 +80,13 @@ jobs:
         git-archive-all cmdstan-temp.tar.gz
         ls -l
         mkdir cmdstan-tarball
-        tar -xvzf cmdstan-temp.tar.gz -C cmdstan-tarball/
-        tar -cvzf cmdstan-tarball.tar.gz cmdstan-tarball
+        tar -xvzf cmdstan-temp.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
+        tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}
 
     - name: Upload tarball
       uses: actions/upload-artifact@v2
       with:
-        path: 'cmdstan/cmdstan-tarball.tar.gz'
+        name:  cmdstan-${{ github.event.inputs.tarball_name }}
+        path: 'cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz'
 
     
