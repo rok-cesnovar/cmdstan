@@ -92,7 +92,8 @@ jobs:
       - name: Checkout stanc3
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branch }}
+          repository: ${{ github.event.inputs.stanc3_repo }}
+          ref: ${{ github.event.inputs.stanc3_branch }}
 
       - name: opam caching
         id: opam-cache
@@ -135,7 +136,8 @@ jobs:
       - name: Checkout stanc3
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branch }}
+          repository: ${{ github.event.inputs.stanc3_repo }}
+          ref: ${{ github.event.inputs.stanc3_branch }}
 
       - name: opam caching
         id: opam-cache
