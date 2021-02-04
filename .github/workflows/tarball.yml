@@ -230,6 +230,7 @@ jobs:
 
     - name: package tarball
       run: |
+        cd cmdstan
         ls -l
         tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}
 
