@@ -214,19 +214,19 @@ jobs:
       uses: actions/download-artifact@v2
       with:
           name: mac-stanc
-          path: mac-stanc
+          path: cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/mac-stanc
 
     - name: Download Linux binaries
       uses: actions/download-artifact@v2
       with:
           name: linux-stanc
-          path: linux-stanc
+          path: cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/linux-stanc
 
     - name: Download Windows binaries
       uses: actions/download-artifact@v2
       with:
           name: windows-stanc
-          path: windows-stanc
+          path: cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/windows-stanc
 
     - name: package tarball
       run: |
