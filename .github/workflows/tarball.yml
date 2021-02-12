@@ -233,10 +233,6 @@ jobs:
       run: |
         cd cmdstan
         ls -l
-        unzip bins/linux-stanc.zip
-        unzip bins/windows-stanc.zip
-        unzip bins/mac-stanc.zip
-        ls -l
         ls -l bins
         ls -l bins/linux-stanc
         tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}
