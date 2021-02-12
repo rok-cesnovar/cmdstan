@@ -207,7 +207,7 @@ jobs:
         cd cmdstan
         git-archive-all cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
         mv cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz ../../cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
-        cd ../..
+        cd ..
         mkdir cmdstan-${{ github.event.inputs.tarball_name }}
         tar -xvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
     
