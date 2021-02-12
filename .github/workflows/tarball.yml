@@ -234,8 +234,8 @@ jobs:
         mv bins/linux-stanc/linux-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin/linux-stanc
         mv bins/windows-stanc/windows-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin/windows-stanc
         mv bins/mac-stanc/mac-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin/mac-stanc
-        cd cmdstan        
-        tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp
+        cd cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/        
+        tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-temp
 
     - name: Upload tarball
       uses: actions/upload-artifact@v2
