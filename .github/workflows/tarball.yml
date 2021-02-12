@@ -205,10 +205,11 @@ jobs:
     - name: package tarball
       run: |
         cd cmdstan
-        git-archive-all cmdstan-${{ github.event.inputs.tarball_name }}/.tar.gz
-        ls -l
+        git-archive-all cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
+        mv cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz ../../cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
+        cd ../..
         mkdir cmdstan-${{ github.event.inputs.tarball_name }}
-        tar -xvzf cmdstan-${{ github.event.inputs.tarball_name }}/.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
+        tar -xvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
     
     - name: Download MacOS binaries
       uses: actions/download-artifact@v2
@@ -230,17 +231,17 @@ jobs:
 
     - name: package tarball
       run: |
-        mkdir cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-${{ github.event.inputs.tarball_name }}//bin
-        mv bins/linux-stanc/linux-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-${{ github.event.inputs.tarball_name }}//bin/linux-stanc
-        mv bins/windows-stanc/windows-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-${{ github.event.inputs.tarball_name }}//bin/windows-stanc
-        mv bins/mac-stanc/mac-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-${{ github.event.inputs.tarball_name }}//bin/mac-stanc
-        cd cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/        
-        tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}/
+        mkdir cmdstan-${{ github.event.inputs.tarball_name }}/bin
+        mv bins/linux-stanc/linux-stanc cmdstan-${{ github.event.inputs.tarball_name }}/bin/linux-stanc
+        mv bins/windows-stanc/windows-stanc cmdstan-${{ github.event.inputs.tarball_name }}/bin/windows-stanc
+        mv bins/mac-stanc/mac-stanc cmdstan-${{ github.event.inputs.tarball_name }}/bin/mac-stanc
+        tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}
+        ls -l
 
     - name: Upload tarball
       uses: actions/upload-artifact@v2
       with:
         name:  cmdstan-${{ github.event.inputs.tarball_name }}
-        path: 'cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz'
+        path: 'cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz'
 
     
