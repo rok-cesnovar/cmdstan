@@ -230,6 +230,7 @@ jobs:
 
     - name: package tarball
       run: |
+        mkdir cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin
         mv bins/linux-stanc/linux-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/linux-stanc
         mv bins/windows-stanc/windows-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/windows-stanc
         mv bins/mac-stanc/mac-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/mac-stanc
