@@ -233,7 +233,7 @@ jobs:
         mkdir cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin
         mv bins/linux-stanc/linux-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin/linux-stanc
         mv bins/windows-stanc/windows-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin/windows-stanc
-        mv bins/mac-stanc/mac-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/bin/mac-stanc
+        mv bins/mac-stanc/mac-stanc cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp/bin/mac-stanc
         cd cmdstan        
         tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-temp
 
