@@ -209,7 +209,7 @@ jobs:
         mv cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz ../cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
         cd ..
         mkdir cmdstan-${{ github.event.inputs.tarball_name }}
-        tar -xvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
+        tar -xvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
     
     - name: Download MacOS binaries
       uses: actions/download-artifact@v2
