@@ -209,7 +209,6 @@ jobs:
         ls -l
         mkdir cmdstan-${{ github.event.inputs.tarball_name }}
         tar -xvzf cmdstan-temp.tar.gz -C cmdstan-${{ github.event.inputs.tarball_name }}/
-        mkdir bins
     
     - name: Download MacOS binaries
       uses: actions/download-artifact@v2
@@ -231,10 +230,9 @@ jobs:
 
     - name: package tarball
       run: |
-        cd cmdstan
-        ls -l
         ls -l bins
         ls -l bins/linux-stanc
+        cd cmdstan        
         tar -cvzf cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz cmdstan-${{ github.event.inputs.tarball_name }}
 
     - name: Upload tarball
