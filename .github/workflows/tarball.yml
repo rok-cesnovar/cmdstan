@@ -241,6 +241,6 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name:  cmdstan-${{ github.event.inputs.tarball_name }}
-        path: 'cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz'
+        path: 'cmdstan/cmdstan-${{ github.event.inputs.tarball_name }}/cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz'
 
     
