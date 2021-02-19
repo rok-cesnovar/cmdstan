@@ -192,17 +192,17 @@ jobs:
         ref: ${{ github.event.inputs.math_branch }}
         path: cmdstan/stan/lib/stan_math
     
-    # - name: Building
-    #   run: |
-    #     cd cmdstan
-    #     make build
-    #     make clean-all
+    - name: Building
+      run: |
+        cd cmdstan
+        make build
+        make clean-all
     
     - name: install git-archive-all
       run: |
         pip install git-archive-all
 
-    - name: package tarball
+    - name: Package tarball part 1
       run: |
         cd cmdstan
         git-archive-all cmdstan-${{ github.event.inputs.tarball_name }}.tar.gz
@@ -229,7 +229,7 @@ jobs:
           name: windows-stanc
           path: bins/windows-stanc
 
-    - name: package tarball
+    - name: Package tarball part 2
       run: |
         mkdir cmdstan-${{ github.event.inputs.tarball_name }}/bin
         mv bins/linux-stanc/linux-stanc cmdstan-${{ github.event.inputs.tarball_name }}/bin/linux-stanc
