@@ -197,33 +197,6 @@ pipeline {
                     }
                 }
 
-                stage('Mac interface tests') {
-                    agent { label 'osx'}
-                    steps {
-                        setupCXX()
-                        sh runTests("./")
-                    }
-                    post {
-                        always {
-
-                            recordIssues id: "Mac",
-                            name: "Mac interface tests",
-                            enabledForFailure: true,
-                            aggregatingResults : true,
-                            tools: [
-                                gcc4(id: "Mac_gcc4", name: "Mac interface tests@GCC4"),
-                                clang(id: "Mac_clang", name: "Mac interface tests@CLANG")
-                            ],
-                            blameDisabled: false,
-                            qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]],
-                            healthy: 10, unhealthy: 100, minimumSeverity: 'HIGH',
-                            referenceJobName: env.BRANCH_NAME
-
-                            deleteDir()
-                        }
-                    }
-                }
-
                 stage('Upstream CmdStan Performance tests') {
                     when {
                             expression {

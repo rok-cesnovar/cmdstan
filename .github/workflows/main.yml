@@ -1,4 +1,4 @@
-name: Windows Rtools 3.5 
+name: Interface tests
 
 on:
   push:
@@ -7,9 +7,9 @@ on:
     branches: [ develop ]
 
 jobs:
-  build:
+  windows-rtools-35:
     runs-on: windows-latest
-
+    name: Windows RTools 3.5
     steps:
     - uses: actions/checkout@v2
       with:  
@@ -40,3 +40,23 @@ jobs:
         mingw32-make examples/bernoulli/bernoulli.exe
         ./examples/bernoulli/bernoulli.exe sample data file=examples/bernoulli/bernoulli.data.json
       shell: powershell
+  mac:
+    runs-on: macos-latest
+    name: MacOS
+    steps:
+    - name: Print system info
+      run: |
+        clang++ --version
+        make --version
+    - uses: actions/checkout@v2
+      with:  
+        submodules: 'recursive'
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '2.x'
+    - name: Building cmdstan
+      run: |
+        make -j2 build
+    - name: Run interface tests
+      run: |
+        python runCmdStanTests.py -j2 src/test/interface
